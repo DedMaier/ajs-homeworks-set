@@ -1,4 +1,4 @@
-
+[![Build status](https://ci.appveyor.com/api/projects/status/yar77c51u0ky1a7c?svg=true)](https://ci.appveyor.com/project/DedMaier/ajs-homeworks-set)
 
 ## `Set`
 
