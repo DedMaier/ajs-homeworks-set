@@ -1,4 +1,5 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/yar77c51u0ky1a7c?svg=true)](https://ci.appveyor.com/project/DedMaier/ajs-homeworks-set)
+[![Build status](https://ci.appveyor.com/api/projects/status/xpe09niafpym3ffg?svg=true)](https://ci.appveyor.com/project/DedMaier/ajs-homeworks-set-acck9)
+main branch status badge
 
 ## `Set`
 
@@ -8,8 +9,7 @@
 
 ### Описание
 
-Создайте класс `Team` с методами `add`, `addAll` и `toArray`. Класс должен хранить данные о персонажах команды в поле типа `Set`:
-```javascript
+Создайте класс `Team` с методами `add`, `addAll` и `toArray`. Класс должен хранить данные о персонажах команды в поле типа `Set`: javascript
 class Team {
     constructor() {
         this.members = new Set();
@@ -25,6 +25,3 @@ class Team {
 Метод `toArray` должен производить конвертацию `Set` в массив.
 
 Не забудьте написать Unit-тесты, которые обеспечивают 100-процентное покрытие тестируемых функций и классов.
-
----
-
