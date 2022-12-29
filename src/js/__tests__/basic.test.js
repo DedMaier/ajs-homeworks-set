@@ -1,55 +1,57 @@
 import Team from '../basic';
 
-// add - - - - - - - - - - - - - - - - - - - - - - - -
+const archer = { name: 'лучник', health: 100 };
+const heroes = [
+  { name: 'маг', health: 100 },
+  { name: 'лучник', health: 100 },
+  { name: 'мечник', health: 100 },
+  { name: 'лучник', health: 100 },
+  { name: 'лучник', health: 100 },
+  { name: 'мечник', health: 100 },
+  { name: 'маг', health: 100 },
+  { name: 'зомби', health: 100 },
+  { name: 'зомби', health: 100 },
+];
+const team = new Team();
+const team2 = new Team();
 
-test('Объект должен создаваться', () => {
-  const unit = new Team().add('Bowman');
-  expect(unit.size).toBe(1);
+test('Добавили игрока в команду', () => {
+  const expected = new Set();
+  team.add(archer);
+  expected.add({ name: 'лучник', health: 100 });
+  expect(team.members).toEqual(expected);
 });
 
-test('Объект должен создаваться', () => {
-  const units = new Team();
-  const unit1 = units.add('Daemon');
-  const unit2 = unit1.add('Bowman');
-  expect(unit2.size).toBe(2);
+test('Дубль персонажа', () => {
+  function getError() {
+    team.add(archer);
+    return team.add(archer);
+  }
+
+  expect(getError).toThrowError(new Error('Такой персонаж уже есть'));
 });
 
-test('Объект не должен создаваться', () => {
-  expect(() => new Team().add('Boy')).toThrow();
+test('Добавлена группа персонажей', () => {
+  team2.addAll(...heroes);
+  function getArray() {
+    return Array.from(team2.members);
+  }
+  const expected = [
+    { name: 'маг', health: 100 },
+    { name: 'лучник', health: 100 },
+    { name: 'мечник', health: 100 },
+    { name: 'зомби', health: 100 },
+  ];
+
+  expect(getArray()).toEqual(expected);
 });
 
-test('Объект не должен создаваться', () => {
-  const unit = new Team();
-  unit.add('Bowman');
-  unit.add('Daemon');
-  expect(() => unit.add('Daemon')).toThrow();
-});
-
-// addAll - - - - - - - - - - - - - - - - - - - - - - - -
-
-test('Объект должен создаваться', () => {
-  const unit = new Team().addAll('Bowman', 'Zombie', 'Daemon');
-  expect(unit.size).toBe(3);
-});
-
-test('Объект должен создаваться', () => {
-  const unit = new Team().addAll('Zombie', 'Bowman', 'Zombie', 'Daemon');
-  expect(unit.size).toBe(3);
-});
-
-test('Объект должен создаваться', () => {
-  const unit = new Team().addAll('Zom', 'Bow', 'Zom', 'Daemon');
-  expect(unit.size).toBe(1);
-});
-
-// toArray - - - - - - - - - - - - - - - - - - - - - - - -
-
-test('Объект должен создаваться', () => {
-  const unit = new Team();
-  unit.addAll('Zombie', 'Bowman', 'Zombie', 'Daemon');
-  expect(unit.toArray()).toEqual([
-    { name: 'Zombie', type: 'Zombie' },
-    { name: 'Bowman', type: 'Bowman' },
-    { name: 'Daemon', type: 'Daemon' },
-  ]);
+test('конвертация Set в массив.', () => {
+  const expected = [
+    { name: 'маг', health: 100 },
+    { name: 'лучник', health: 100 },
+    { name: 'мечник', health: 100 },
+    { name: 'зомби', health: 100 },
+  ];
+  expect(team2.toArray()).toEqual(expected);
 });
